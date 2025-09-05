@@ -15,7 +15,7 @@ const ViewPrescriptions = () => {
     if (!user) return;
 
     axios
-      .get(`http://localhost:8080/api/patients/${user.id}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/patients/${user.id}`)
       .then((res) => {
         setPatient(res.data);
       })
@@ -27,7 +27,7 @@ const ViewPrescriptions = () => {
     if (!patient) return;
 
     axios
-      .get(`http://localhost:8080/api/prescriptions/patient/${patient.id}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/prescriptions/patient/${patient.id}`)
       .then((res) => setPrescriptions(res.data))
       .catch((err) => console.error("Error fetching prescriptions:", err));
   }, [patient]);

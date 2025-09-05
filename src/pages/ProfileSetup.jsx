@@ -22,7 +22,7 @@ export default function ProfileSetup() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/patients/${user.id}/profile`, // clerkUserId from Clerk
+        `${import.meta.env.VITE_API_URL}/api/patients/${user.id}/profile`, // clerkUserId from Clerk
         form
       );
       setMessage("Profile updated successfully!");

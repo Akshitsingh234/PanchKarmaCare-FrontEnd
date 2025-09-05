@@ -21,7 +21,7 @@ export default function UserDashboard() {
     if (!user) return;
       console.log("Clerk user.id:", user.id);  
     axios
-      .get(`http://localhost:8080/appointments/clerk/${user.id}`)
+      .get(`${import.meta.env.VITE_API_URL}/appointments/clerk/${user.id}`)
       .then((res) => setAppointments(res.data || []))
       .catch((err) => console.error(err));
   }, [user]);
@@ -30,7 +30,7 @@ export default function UserDashboard() {
   useEffect(() => {
     if (!user) return;
     axios
-      .get(`http://localhost:8080/reminders/patient/${user.id}`  )
+      .get(`${import.meta.env.VITE_API_URL}/reminders/patient/${user.id}`  )
      
       .then((res) => setReminders(res.data))
       .catch((err) => console.error(err));
@@ -41,7 +41,7 @@ export default function UserDashboard() {
     if (!newTitle || !newSchedule) return;
 
     axios
-      .post("http://localhost:8080/reminders/patient", {
+      .post("${import.meta.env.VITE_API_URL}/reminders/patient", {
         patientId: user.id,
         title: newTitle,
         schedule: newSchedule,
@@ -57,7 +57,7 @@ export default function UserDashboard() {
   // Remove a reminder
   const handleRemoveReminder = (id) => {
     axios
-      .delete(`http://localhost:8080/reminders/patient/${user.id}/${id}`)
+      .delete(`${import.meta.env.VITE_API_URL}/reminders/patient/${user.id}/${id}`)
       .then(() => setReminders(reminders.filter((r) => r.id !== id)))
       .catch((err) => console.error(err));
   };

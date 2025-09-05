@@ -10,7 +10,7 @@ export default function ProtectedRoute({ children }) {
 
   useEffect(() => {
     if (user) {
-      axios.post("http://localhost:8080/api/auth/login", {
+      axios.post("${import.meta.env.VITE_API_URL}/api/auth/login", {
         clerkUserId: user.id,
         email: user.primaryEmailAddress?.emailAddress,
         fullName: user.fullName,

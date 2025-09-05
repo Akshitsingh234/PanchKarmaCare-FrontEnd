@@ -17,13 +17,13 @@ export default function DoctorPanel() {
   console.log("🔑 Clerk ID:", user.id);
 
   axios
-    .get(`http://localhost:8080/api/doctors/by-clerk/${user.id}`)
+    .get(`${import.meta.env.VITE_API_URL}/api/doctors/by-clerk/${user.id}`)
     .then((res) => {
       console.log("✅ Doctor object:", res.data);
       setDoctor(res.data);
 
       return axios.get(
-        `http://localhost:8080/api/doctors/appointments/doctor/${res.data.id}`
+        `${import.meta.env.VITE_API_URL}/api/doctors/appointments/doctor/${res.data.id}`
       );
     })
     .then(async (res) => {
@@ -33,7 +33,7 @@ export default function DoctorPanel() {
         res.data.map(async (appt) => {
           try {
             const patientRes = await axios.get(
-              `http://localhost:8080/api/patients/${appt.patientId}`
+              `${import.meta.env.VITE_API_URL}/api/patients/${appt.patientId}`
             );
             return { ...appt, patient: patientRes.data };
           } catch (err) {
@@ -61,7 +61,7 @@ export default function DoctorPanel() {
   //  reject 
   const handleReject = async (appointmentId) => {
   try {
-    await axios.post(`http://localhost:8080/api/doctors/appointments/${appointmentId}/reject`);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/doctors/appointments/${appointmentId}/reject`);
     // refresh appointments after rejection
     setAppointments((prev) =>
       prev.map((appt) =>
@@ -75,7 +75,7 @@ export default function DoctorPanel() {
 
 const handleApprove = async (appointmentId) => {
   try {
-    await axios.post(`http://localhost:8080/api/doctors/appointments/${appointmentId}/approve`);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/doctors/appointments/${appointmentId}/approve`);
     setAppointments((prev) =>
       prev.map((appt) =>
         appt.appointmentId === appointmentId ? { ...appt, status: "APPROVED" } : appt
