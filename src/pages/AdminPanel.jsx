@@ -20,7 +20,7 @@ export default function AdminPage() {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get("${import.meta.env.VITE_API_URL}/api/doctors");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/doctors`);
       setDoctors(res.data);
     } catch (err) {
       console.error("Error fetching doctors", err);
@@ -30,7 +30,7 @@ export default function AdminPage() {
 
    const fetchPatients = async () => {
     try {
-      const res = await axios.get("${import.meta.env.VITE_API_URL}/api/admin/patients");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/patients`);
       setPatients(res.data);
     } catch (err) {
       console.error("Error fetching patients", err);
@@ -49,7 +49,7 @@ export default function AdminPage() {
     e.preventDefault();
     console.log("Sending doctor payload:", newDoctor); 
     try {
-      await axios.post("${import.meta.env.VITE_API_URL}/api/doctors/register", newDoctor);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/doctors/register`, newDoctor);
       setNewDoctor({ fullName: "", email: "", experience: "", specialization: "" });
       fetchDoctors();
     } catch (err) {

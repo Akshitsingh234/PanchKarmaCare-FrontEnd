@@ -41,7 +41,7 @@ export default function UserDashboard() {
     if (!newTitle || !newSchedule) return;
 
     axios
-      .post("${import.meta.env.VITE_API_URL}/reminders/patient", {
+      .post(`${import.meta.env.VITE_API_URL}/reminders/patient`, {
         patientId: user.id,
         title: newTitle,
         schedule: newSchedule,

@@ -11,7 +11,7 @@ export default function DoctorList() {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get("${import.meta.env.VITE_API_URL}/api/admin/doctors");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/doctors`);
       setDoctors(res.data);
     } catch (err) {
       console.error("Error fetching doctors", err);

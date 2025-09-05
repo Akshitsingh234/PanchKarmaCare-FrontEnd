@@ -46,7 +46,7 @@ export default function Appointment() {
 
 useEffect(() => {
   axios
-    .get("${import.meta.env.VITE_API_URL}/api/doctors") // backend endpoint returning all doctors
+    .get(`${import.meta.env.VITE_API_URL}/api/doctors`) // backend endpoint returning all doctors
     .then((res) => setDoctors(res.data || []))
     .catch((err) => console.error(err));
 }, []);
@@ -86,7 +86,7 @@ const handleSubmit = async () => {
       mode: formData.mode,            // optional if backend supports
     };
 
-    await axios.post("${import.meta.env.VITE_API_URL}/appointments", appointmentData, {
+    await axios.post(`${import.meta.env.VITE_API_URL}/appointments`, appointmentData, {
       headers: { "Content-Type": "application/json" },
     });
 

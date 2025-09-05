@@ -23,7 +23,7 @@ export default function Home() {
   let isMounted = true; // prevent navigation if component unmounts
 
   axios
-    .post("${import.meta.env.VITE_API_URL}/api/auth/login", {
+    .post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
       clerkUserId: user.id,
       email: user.primaryEmailAddress?.emailAddress,
       fullName: user.fullName,

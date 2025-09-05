@@ -21,7 +21,7 @@ export default function AddPrescription() {
   // 🔹 Fetch patients list
   useEffect(() => {
     axios
-      .get("${import.meta.env.VITE_API_URL}/api/admin/patients")
+      .get(`${import.meta.env.VITE_API_URL}/api/admin/patients`)
       .then((res) => setPatients(res.data))
       .catch((err) => console.error("❌ Error fetching patients:", err));
   }, []);
@@ -34,7 +34,7 @@ export default function AddPrescription() {
     }
 
     try {
-      await axios.post("${import.meta.env.VITE_API_URL}/api/prescriptions/add", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/prescriptions/add`, {
         doctorId: doctor.id,
         patientId: Number(selectedPatient),
         prescriptionText: text,
