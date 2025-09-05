@@ -18,38 +18,52 @@ export default function Home() {
 
   // ✅ Backend login + redirect
   useEffect(() => {
-    if (user) {
-      axios
-        .post("http://localhost:8080/api/auth/login", {
-          clerkUserId: user.id,
-          email: user.primaryEmailAddress?.emailAddress,
-          fullName: user.fullName,
-        })
-        .then((res) => {
-          const loggedInUser = res.data;
-          console.log("✅ Backend login response:", loggedInUser);
+  if (!user) return; // exit if no user yet
 
-          if (!loggedInUser || !loggedInUser.role) {
-            console.error("⚠️ No role found in backend response");
-            return;
-          }
+  let isMounted = true; // prevent navigation if component unmounts
 
-          if (loggedInUser.role === "ADMIN") {
-            navigate("/admin-dashboard");
-          } else if (loggedInUser.role === "DOCTOR") {
-             navigate("/doctor-dashboard", { state: { user: loggedInUser } });
+  axios
+    .post("http://localhost:8080/api/auth/login", {
+      clerkUserId: user.id,
+      email: user.primaryEmailAddress?.emailAddress,
+      fullName: user.fullName,
+    })
+    .then((res) => {
+      if (!isMounted) return;
+
+      const loggedInUser = res.data;
+      console.log("✅ Backend login response:", loggedInUser);
+
+      if (!loggedInUser || !loggedInUser.role) {
+        console.error("⚠️ No role found in backend response");
+        return;
+      }
+
+      switch (loggedInUser.role) {
+        case "ADMIN":
+          navigate("/admin-dashboard");
+          break;
+        case "DOCTOR":
+          navigate("/doctor-dashboard", { state: { user: loggedInUser } });
+          break;
+        case "PATIENT":
+        default:
+          if (!loggedInUser.age || !loggedInUser.gender) {
+            navigate("/profile-setup", { state: { user: loggedInUser } });
           } else {
-            // Default: PATIENT
-            if (!loggedInUser.age) {
-              navigate("/profile-setup");
-            } else {
-              navigate("/dashboard");
-            }
+            navigate("/dashboard", { state: { user: loggedInUser } });
           }
-        })
-        .catch((err) => console.error("❌ Login error:", err));
-    }
-  }, [user, navigate]);
+          break;
+      }
+    })
+    .catch((err) => {
+      console.error("❌ Login error:", err);
+    });
+
+  return () => {
+    isMounted = false; // cleanup
+  };
+}, [user, navigate]);
 
   const features = [
     {
