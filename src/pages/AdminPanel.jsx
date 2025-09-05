@@ -67,92 +67,110 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <Navbar />
-      <h2 className="text-2xl font-bold mb-6 text-center">Admin Panel - Manage Doctors</h2>
-
-      {/* Add Doctor Form */}
-      <form
-        onSubmit={addDoctor}
-        className="bg-white shadow-md rounded-lg p-6 mb-6 grid grid-cols-1 md:grid-cols-2 gap-4"
-      >
-        <input
-          type="text"
-          name="fullName"
-          placeholder="Full Name"
-          value={newDoctor.fullName}
-          onChange={handleChange}
-          className="border rounded-lg p-2 w-full"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={newDoctor.email}
-          onChange={handleChange}
-          className="border rounded-lg p-2 w-full"
-          required
-        />
-        <input
-          type="number"
-          name="experience"
-          placeholder="Experience (years)"
-          value={newDoctor.experience}
-          onChange={handleChange}
-          className="border rounded-lg p-2 w-full"
-          required
-        />
-        <input
-          type="text"
-          name="specialization"
-          placeholder="Specialization"
-          value={newDoctor.specialization}
-          onChange={handleChange}
-          className="border rounded-lg p-2 w-full"
-          required
-        />
-        <button
-          type="submit"
-          className="md:col-span-2 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
-        >
-          Add Doctor
-        </button>
-      </form>
-
-      {/* Doctor List */}
-      <h3 className="text-xl font-semibold mb-4">Doctors List</h3>
-      <ul className="space-y-3">
-        {doctors.map((doc) => (
-          <li
-            key={doc.id}
-            className="flex justify-between items-center bg-gray-100 p-3 rounded-lg shadow-sm"
+    <div className="min-h-screen w-full bg-gradient-to-br from-green-200 via-yellow-100 to-blue-200 py-6">
+      <div className="max-w-4xl mx-auto p-6">
+        <Navbar />
+        <div className="mt-15"></div>
+        <h2 className="text-2xl font-bold mb-6 text-center">Admin Panel - Manage Doctors</h2>
+        <div className="mt-15"></div>
+        {/* Add Doctor Form */}
+        <div className="transition-transform duration-200 hover:shadow-2xl hover:-translate-y-1 bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-2xl shadow-lg mb-8 p-1">
+          <form
+            onSubmit={addDoctor}
+            className="bg-white/90 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-4"
           >
-            <span>
-              <strong>{doc.fullName}</strong> ({doc.specialization}) - {doc.experience} yrs
-            </span>
+            <div className="md:col-span-2 flex items-center gap-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7 text-green-600">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              <h3 className="text-xl font-bold text-green-700">Add New Doctor</h3>
+            </div>
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Name"
+              value={newDoctor.fullName}
+              onChange={handleChange}
+              className="border border-green-200 rounded-lg p-3 w-full focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={newDoctor.email}
+              onChange={handleChange}
+              className="border border-green-200 rounded-lg p-3 w-full focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+              required
+            />
+            <input
+              type="number"
+              name="experience"
+              placeholder="Experience (years)"
+              value={newDoctor.experience}
+              onChange={handleChange}
+              className="border border-green-200 rounded-lg p-3 w-full focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+              required
+            />
+            <input
+              type="text"
+              name="specialization"
+              placeholder="Specialization"
+              value={newDoctor.specialization}
+              onChange={handleChange}
+              className="border border-green-200 rounded-lg p-3 w-full focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+              required
+            />
             <button
-              onClick={() => deleteDoctor(doc.id)}
-              className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition"
+              type="submit"
+              className="md:col-span-2 flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-xl text-lg font-semibold shadow-lg hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 transition-all duration-200 mt-2"
             >
-              Remove
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              Add Doctor
             </button>
-          </li>
-        ))}
-      </ul>
+          </form>
+        </div>
 
-       {/* Patient List */}
-      <h3 className="text-xl font-semibold mb-4">Patients List</h3>
-      <ul className="space-y-3">
-        {patients.map((pat) => (
-          <li
-            key={pat.id}
-            className="bg-green-100 p-3 rounded-lg shadow-sm"
-          >
-            <strong>{pat.fullName}</strong> - {pat.email}
-          </li>
-        ))}
-      </ul>
+        {/* Doctor List */}
+        <h3 className="text-xl font-semibold mb-4">Doctors List</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {doctors.map((doc) => (
+            <div
+              key={doc.id}
+              className="bg-gradient-to-br from-green-200 via-blue-100 to-blue-200 rounded-2xl shadow-md p-6 flex flex-col justify-between transition-transform duration-200 hover:shadow-xl hover:-translate-y-1 border border-green-200"
+            >
+              <div>
+                <h4 className="text-lg font-bold text-green-800 mb-1">{doc.fullName}</h4>
+                <p className="text-blue-700 mb-1">{doc.specialization}</p>
+                <p className="text-blue-500 text-sm mb-2">{doc.experience} yrs experience</p>
+                <p className="text-gray-700 text-xs break-all mb-4">{doc.email}</p>
+              </div>
+              <button
+                onClick={() => deleteDoctor(doc.id)}
+                className="mt-auto bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+        </div>
+
+         {/* Patient List */}
+        <h3 className="text-xl font-semibold mb-4">Patients List</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {patients.map((pat) => (
+            <div
+              key={pat.id}
+              className="bg-gradient-to-br from-yellow-100 via-green-100 to-green-200 rounded-2xl shadow-md p-6 flex flex-col justify-between transition-transform duration-200 hover:shadow-xl hover:-translate-y-1 border border-green-200"
+            >
+              <h4 className="text-lg font-bold text-green-800 mb-1">{pat.fullName}</h4>
+              <p className="text-gray-700 text-xs break-all mb-2">{pat.email}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

@@ -50,6 +50,18 @@ export default function Navbar() {
 
         {/* Auth Buttons */}
         <div className="flex items-center gap-3">
+          {/* ✅ Purple button before appointment */}
+          <button
+            type="button"
+            className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br 
+                       focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 
+                       shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 
+                       font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            onClick={() => navigate("/symptoms")}
+          >
+            Symptom Checker
+          </button>
+
           <SignedOut>
             <SignInButton mode="modal">
               <button className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
@@ -57,8 +69,9 @@ export default function Navbar() {
               </button>
             </SignInButton>
           </SignedOut>
+
           <SignedIn>
-            <UserButton afterSignOutUrl= "/" />
+            <UserButton afterSignOutUrl="/" />
           </SignedIn>
         </div>
       </div>

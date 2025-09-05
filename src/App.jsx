@@ -12,6 +12,7 @@ import Prescription from  "./pages/Prescription";
 import AddPrescription from  "./pages/AddPrescription";  
 import DoctorList from  "./pages/DoctorList";  
 import ProtectedRoute from "./pages/ProtectedRoute";
+import ChatBot from  "./pages/ChatBot"; 
 export default function App() {
   return (
     <BrowserRouter>
@@ -27,6 +28,7 @@ export default function App() {
             <Route path="/prescription" element={<RequireAuth><Prescription /></RequireAuth>} />
            <Route path="/add-prescription" element={<RequireAuth><AddPrescription /></RequireAuth>} />
             <Route path="/doctors" element={<DoctorList />} />
+              <Route path="/symptoms" element={<ChatBot />} />
       </Routes>
     </BrowserRouter>
   );

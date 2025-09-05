@@ -82,7 +82,7 @@ export default function AddPrescription() {
               <option value="">-- Choose Patient --</option>
               {patients.map((p) => (
                 <option key={p.id} value={p.id}>
-                  {p.name} ({p.email})
+                  {p.name} ({p.fullName})
                 </option>
               ))}
             </select>

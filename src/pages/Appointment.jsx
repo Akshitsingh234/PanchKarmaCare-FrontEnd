@@ -157,71 +157,109 @@ const handleSubmit = async () => {
 
       case 2:
         return (
-          <div className="space-y-8">
-            <input
-              type="date"
-              name="appointmentDate"
-              value={formData.appointmentDate || ""}
-              onChange={handleChange}
-              className="w-full border p-4 rounded-lg text-lg"
-            />
-            <input
-              type="time"
-              name="appointmentTime"
-              value={formData.appointmentTime || ""}
-              onChange={handleChange}
-              className="w-full border p-4 rounded-lg text-lg"
-            />
-            <select
-              name="specialization"
-              value={formData.specialization}
-              onChange={handleChange}
-              className="w-full border p-4 rounded-lg text-lg"
-            >
-              <option value="">Select Specialization</option>
-              <option value="Ayurveda">Ayurveda</option>
-              <option value="Panchakarma">Panchakarma</option>
-              <option value="Nutrition">Nutrition</option>
-            </select>
-             {/* <input
-        type="text"
-        name="doctor"
-        placeholder="Doctor Name"
-        value={formData.doctor}
-        onChange={handleChange}
-        className="w-full border p-2 mb-3 rounded"
-        required
-      /> */}
-    <select
-  name="doctorId"
-  value={formData.doctorId}
-  onChange={handleChange}
-  required
->
-  <option value="">Select Doctor</option>
-  {doctors.map((doc) => (
-    <option key={doc.id} value={doc.id}>
-      {doc.fullName} - {doc.specialization}
-    </option>
-  ))}
-</select>
-            <select
-              name="mode"
-              value={formData.mode}
-              onChange={handleChange}
-              className="w-full border p-4 rounded-lg text-lg"
-            >
-              <option value="">Select Mode</option>
-              <option value="Online">Online</option>
-              <option value="In-person">In-person</option>
-            </select>
-            <textarea
-              name="reason"
-              placeholder="Reason for visit"
-              value={formData.reason || ""}
-              onChange={handleChange}
-              className="w-full border p-4 rounded-lg text-lg"
-            />
+          <div className="bg-gradient-to-br from-green-100 via-blue-50 to-green-200 rounded-2xl shadow-xl p-8 space-y-8 border border-green-200 animate-fade-in">
+            <h2 className="text-2xl font-bold text-green-700 mb-4 flex items-center gap-2">
+              <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={2} stroke='currentColor' className='w-7 h-7 text-green-400'><path strokeLinecap='round' strokeLinejoin='round' d='M16.5 7.5V6A2.25 2.25 0 0014.25 3.75h-4.5A2.25 2.25 0 007.5 6v1.5' /><path strokeLinecap='round' strokeLinejoin='round' d='M3.75 7.5h16.5M4.5 7.5v10.125A2.625 2.625 0 007.125 20.25h9.75A2.625 2.625 0 0020.25 17.625V7.5' /></svg>
+              Appointment Details
+            </h2>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex-1 space-y-6">
+                <label className="block">
+                  <span className="flex items-center gap-2 text-green-700 font-medium mb-1">
+                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={2} stroke='currentColor' className='w-5 h-5'><path strokeLinecap='round' strokeLinejoin='round' d='M8 7V3m8 4V3m-9 8h10m-9 4h6m-7 4h8' /></svg>
+                    Date
+                  </span>
+                  <input
+                    type="date"
+                    name="appointmentDate"
+                    value={formData.appointmentDate || ""}
+                    onChange={handleChange}
+                    className="w-full border border-green-200 p-4 rounded-lg text-lg focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+                  />
+                </label>
+                <label className="block">
+                  <span className="flex items-center gap-2 text-green-700 font-medium mb-1">
+                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={2} stroke='currentColor' className='w-5 h-5'><path strokeLinecap='round' strokeLinejoin='round' d='M12 8v4l3 3' /><path strokeLinecap='round' strokeLinejoin='round' d='M12 6a9 9 0 110 18 9 9 0 010-18z' /></svg>
+                    Time
+                  </span>
+                  <input
+                    type="time"
+                    name="appointmentTime"
+                    value={formData.appointmentTime || ""}
+                    onChange={handleChange}
+                    className="w-full border border-green-200 p-4 rounded-lg text-lg focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+                  />
+                </label>
+                <label className="block">
+                  <span className="flex items-center gap-2 text-green-700 font-medium mb-1">
+                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={2} stroke='currentColor' className='w-5 h-5'><path strokeLinecap='round' strokeLinejoin='round' d='M12 6v6l4 2' /><path strokeLinecap='round' strokeLinejoin='round' d='M12 4a8 8 0 110 16 8 8 0 010-16z' /></svg>
+                    Specialization
+                  </span>
+                  <select
+                    name="specialization"
+                    value={formData.specialization}
+                    onChange={handleChange}
+                    className="w-full border border-green-200 p-4 rounded-lg text-lg focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+                  >
+                    <option value="">Select Specialization</option>
+                    <option value="Ayurveda">Ayurveda</option>
+                    <option value="Panchakarma">Panchakarma</option>
+                    <option value="Nutrition">Nutrition</option>
+                  </select>
+                </label>
+                <label className="block">
+                  <span className="flex items-center gap-2 text-green-700 font-medium mb-1">
+                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={2} stroke='currentColor' className='w-5 h-5'><path strokeLinecap='round' strokeLinejoin='round' d='M12 6v6l4 2' /><path strokeLinecap='round' strokeLinejoin='round' d='M12 4a8 8 0 110 16 8 8 0 010-16z' /></svg>
+                    Doctor
+                  </span>
+                  <select
+                    name="doctorId"
+                    value={formData.doctorId}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-green-200 p-4 rounded-lg text-lg focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+                  >
+                    <option value="">Select Doctor</option>
+                    {doctors.map((doc) => (
+                      <option key={doc.id} value={doc.id}>
+                        {doc.fullName} - {doc.specialization}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              <div className="flex-1 space-y-6">
+                <label className="block">
+                  <span className="flex items-center gap-2 text-green-700 font-medium mb-1">
+                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={2} stroke='currentColor' className='w-5 h-5'><path strokeLinecap='round' strokeLinejoin='round' d='M12 6v6l4 2' /><path strokeLinecap='round' strokeLinejoin='round' d='M12 4a8 8 0 110 16 8 8 0 010-16z' /></svg>
+                    Mode
+                  </span>
+                  <select
+                    name="mode"
+                    value={formData.mode}
+                    onChange={handleChange}
+                    className="w-full border border-green-200 p-4 rounded-lg text-lg focus:ring-2 focus:ring-green-300 focus:border-green-400 transition"
+                  >
+                    <option value="">Select Mode</option>
+                    <option value="Online">Online</option>
+                    <option value="In-person">In-person</option>
+                  </select>
+                </label>
+                <label className="block">
+                  <span className="flex items-center gap-2 text-green-700 font-medium mb-1">
+                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={2} stroke='currentColor' className='w-5 h-5'><path strokeLinecap='round' strokeLinejoin='round' d='M12 6v6l4 2' /><path strokeLinecap='round' strokeLinejoin='round' d='M12 4a8 8 0 110 16 8 8 0 010-16z' /></svg>
+                    Reason for Visit
+                  </span>
+                  <textarea
+                    name="reason"
+                    placeholder="Reason for visit"
+                    value={formData.reason || ""}
+                    onChange={handleChange}
+                    className="w-full border border-green-200 p-4 rounded-lg text-lg focus:ring-2 focus:ring-green-300 focus:border-green-400 transition min-h-[120px]"
+                  />
+                </label>
+              </div>
+            </div>
           </div>
         );
 
@@ -350,37 +388,43 @@ const handleSubmit = async () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
       <Navbar />
-
+       <div className="mt-20"></div>
       <div className="flex">
         <Sidebar />
 
-        <main className="flex-1 p-12 pt-32">
-          <div className="max-w-4xl mx-auto bg-white p-12 rounded-3xl shadow-xl min-h-[80vh] flex flex-col justify-center">
+        <main className="flex-1 p-4 sm:p-8 md:p-12 pt-28">
+          <div className="max-w-4xl mx-auto bg-white/90 p-4 sm:p-8 md:p-12 rounded-3xl shadow-2xl min-h-[80vh] flex flex-col justify-center border border-green-100">
             {/* Stepper */}
             <div className="flex justify-between mb-10">
               {steps.map((s, i) => (
-                <div
-                  key={i}
-                  className={`flex-1 text-center text-base ${
-                    i + 1 <= step ? "font-bold text-green-600" : "text-gray-400"
-                  }`}
-                >
-                  {s}
+                <div key={i} className="flex-1 flex flex-col items-center">
+                  <div
+                    className={`w-8 h-8 flex items-center justify-center rounded-full border-2 transition-all duration-300 mb-2
+                      ${i + 1 < step ? 'bg-green-500 border-green-500 text-white' : i + 1 === step ? 'bg-white border-green-500 text-green-600 font-bold shadow-lg' : 'bg-gray-200 border-gray-300 text-gray-400'}`}
+                  >
+                    {i + 1}
+                  </div>
+                  <span className={`text-xs sm:text-sm text-center ${i + 1 <= step ? 'text-green-600 font-semibold' : 'text-gray-400'}`}>{s}</span>
+                  {i < steps.length - 1 && (
+                    <div className={`h-1 w-full mt-1 ${i + 1 < step ? 'bg-green-400' : 'bg-gray-200'}`}></div>
+                  )}
                 </div>
               ))}
             </div>
 
             {/* Step Content */}
-            {renderStep()}
+            <div className="transition-all duration-300">
+              {renderStep()}
+            </div>
 
             {/* Navigation */}
-            <div className="flex justify-between mt-12">
+            <div className="flex flex-col sm:flex-row justify-between mt-12 gap-4">
               {step > 1 && (
                 <button
                   onClick={prevStep}
-                  className="px-8 py-3 bg-gray-200 text-lg rounded-lg"
+                  className="px-8 py-3 bg-gray-100 hover:bg-gray-200 text-lg rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-green-300 transition-all"
                 >
                   Back
                 </button>
@@ -388,14 +432,14 @@ const handleSubmit = async () => {
               {step < steps.length ? (
                 <button
                   onClick={nextStep}
-                  className="ml-auto px-8 py-3 bg-green-500 text-white text-lg rounded-lg"
+                  className="ml-auto px-8 py-3 bg-green-500 hover:bg-green-600 text-white text-lg rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-green-300 transition-all"
                 >
                   Next
                 </button>
               ) : (
                 <button
                   onClick={handleSubmit}
-                  className="ml-auto px-8 py-3 bg-green-600 text-white text-lg rounded-lg"
+                  className="ml-auto px-8 py-3 bg-green-600 hover:bg-green-700 text-white text-lg rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-green-400 transition-all"
                 >
                   Submit
                 </button>
